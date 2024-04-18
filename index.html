@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergunta</title>
+    <style>
+        /* Styling for the boxes */
+
+        body {
+            font-family: Arial;
+        }
+
+        .container {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background-image: url("marion.jpg");
+            background-position: center center;
+            background-size: cover;
+        }
+
+        .box {
+            width: 100px;
+            height: 50px;
+            /* border: 3px solid black; */
+            font-weight: bold;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            border-radius: 30px;
+            background-color: white;
+        }
+
+        #yes {
+            left: calc(50% - 150px);
+        }
+
+        #no {
+            left: calc(50% + 50px);
+            /* Initial position for "No" */
+        }
+
+        .pergunta {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="pergunta" id="pergunta">
+            <h1 style="font-size:50px;">Italian, ti piace il<br> portuguese nerd?</h1>
+        </div>
+
+        <div class="box" id="yes" onclick="changeImage()">Molto</div>
+        <div class="box" id="no">No</div>
+    </div>
+
+    <script>
+        // Function to randomly change position of the "No" box
+        function changeNoBoxPosition() {
+            var noBox = document.getElementById('no');
+            var newPositionLeft = Math.random() * (window.innerWidth - 100); // Random left position within the window width - box width
+            var newPositionTop = Math.random() * (window.innerHeight - 50); // Random top position within the window height - box height
+
+            noBox.style.left = newPositionLeft + 'px'; // Set left position
+            noBox.style.top = newPositionTop + 'px'; // Set top position
+        }
+
+        // Event listener for hovering over the "No" box
+        document.getElementById('no').addEventListener('mouseover', function () {
+            changeNoBoxPosition();
+        });
+
+        function changeImage() {
+            document.getElementById("container").style.backgroundImage = "url('new.jpg')";
+            var question = document.getElementById("pergunta");
+            question.style.display = "none";
+
+            var yes = document.getElementById("yes");
+            yes.style.display = "none";
+
+            var no = document.getElementById("no");
+            no.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
